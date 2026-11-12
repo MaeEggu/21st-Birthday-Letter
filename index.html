@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100d14">
+  <meta name="description" content="A moonlit birthday letter and little celebration for Jhanna's 21st birthday.">
+  <title>For Jhanna, on her 21st birthday</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f1e8dc;
+      --muted: #b3a4a6;
+      --night: #100d14;
+      --panel: #1b151d;
+      --panel-soft: #241b25;
+      --wine: #793849;
+      --wine-bright: #b95268;
+      --gold: #d6b779;
+      --line: rgba(218, 185, 121, .22);
+      --serif: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+      --sans: "Segoe UI", Tahoma, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; background: var(--night); scroll-behavior: smooth; }
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 12% 8%, rgba(117, 45, 73, .22), transparent 32rem),
+        radial-gradient(ellipse at 88% 37%, rgba(61, 55, 95, .16), transparent 34rem),
+        linear-gradient(150deg, #100d14 0%, #171119 56%, #0e0c13 100%);
+      font-family: var(--sans);
+    }
+    body::before {
+      position: fixed; z-index: 0; inset: 0; pointer-events: none; content: ""; opacity: .12;
+      background-image: radial-gradient(rgba(255,255,255,.27) .65px, transparent .65px);
+      background-size: 5px 5px; mask-image: linear-gradient(to bottom, black, transparent 80%);
+    }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .sky { position: fixed; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; }
+    .bat { position: absolute; color: #c2a6b0; opacity: .13; font-size: clamp(1.5rem, 4vw, 3rem); animation: drift 12s ease-in-out infinite; }
+    .bat:nth-child(1) { left: 7%; top: 18%; animation-delay: -3s; }
+    .bat:nth-child(2) { right: 8%; top: 29%; font-size: 2rem; animation-delay: -7s; }
+    .bat:nth-child(3) { left: 17%; bottom: 16%; font-size: 1.6rem; animation-delay: -9s; }
+    .bat:nth-child(4) { right: 18%; bottom: 10%; animation-delay: -5s; }
+    @keyframes drift { 50% { transform: translate(15px, -12px) rotate(7deg); } }
+    .wrap { position: relative; z-index: 1; width: min(100% - 32px, 1000px); margin: 0 auto; padding: 24px 0 56px; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin: 0 auto 30px; }
+    .brand { display: flex; align-items: center; gap: 10px; color: var(--gold); font: 14px var(--serif); letter-spacing: .14em; text-transform: uppercase; }
+    .brand-mark { font-size: 22px; }
+    .music-control { display: inline-flex; align-items: center; gap: 8px; padding: 9px 13px; color: var(--ink); background: rgba(30, 22, 31, .8); border: 1px solid var(--line); border-radius: 99px; cursor: pointer; transition: border-color .2s, background .2s; }
+    .music-control:hover { border-color: var(--gold); background: #281d29; }
+    .music-note { color: var(--gold); }
+    .progress { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 auto 25px; color: var(--muted); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    .progress-item { display: flex; align-items: center; gap: 7px; }
+    .progress-dot { display: grid; width: 23px; height: 23px; place-items: center; border: 1px solid #51404e; border-radius: 50%; font-size: 10px; }
+    .progress-item.current { color: var(--gold); }
+    .progress-item.current .progress-dot, .progress-item.done .progress-dot { background: #563040; border-color: var(--wine-bright); color: white; }
+    .progress-line { width: clamp(8px, 3vw, 32px); height: 1px; background: #463541; }
+    .panel { position: relative; overflow: hidden; padding: clamp(26px, 5vw, 58px); background: linear-gradient(145deg, rgba(34, 25, 36, .96), rgba(22, 17, 25, .96)); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 28px 90px rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.035); }
+    .panel::before, .panel::after { position: absolute; width: 160px; height: 160px; content: ""; opacity: .15; pointer-events: none; }
+    .panel::before { top: -105px; left: -105px; border: 1px solid var(--gold); border-radius: 50%; box-shadow: 0 0 0 11px rgba(0,0,0,0), 0 0 0 12px var(--gold); }
+    .panel::after { right: -120px; bottom: -120px; border: 1px solid var(--wine-bright); border-radius: 50%; box-shadow: 0 0 0 12px rgba(0,0,0,0), 0 0 0 13px var(--wine-bright); }
+    .screen { display: none; animation: rise .45s ease both; }
+    .screen.active { display: block; }
+    @keyframes rise { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
+    .center { text-align: center; }
+    .eyebrow { margin: 0 0 12px; color: var(--gold); font-size: 11px; font-weight: 600; letter-spacing: .23em; text-transform: uppercase; }
+    h1, h2, h3 { margin-top: 0; font-family: var(--serif); font-weight: 400; }
+    h1 { margin-bottom: 14px; font-size: clamp(2.6rem, 8vw, 5.4rem); line-height: .98; letter-spacing: -.04em; }
+    h2 { margin-bottom: 12px; font-size: clamp(2rem, 5vw, 3.1rem); letter-spacing: -.025em; }
+    h3 { font-size: 1.6rem; }
+    .subtitle { max-width: 580px; margin: 0 auto 28px; color: var(--muted); font: 17px/1.75 var(--serif); }
+    .ornament { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 23px 0; color: var(--gold); }
+    .ornament::before, .ornament::after { width: min(17vw, 90px); height: 1px; content: ""; background: linear-gradient(90deg, transparent, var(--gold)); opacity: .6; }
+    .ornament::after { transform: rotate(180deg); }
+    .pin-form { display: flex; align-items: stretch; justify-content: center; gap: 10px; max-width: 390px; margin: 25px auto 0; }
+    .pin-input { width: min(100%, 190px); min-height: 50px; padding: 0 16px; color: var(--ink); background: rgba(7,6,10,.58); border: 1px solid #55404e; border-radius: 10px; text-align: center; font-size: 20px; letter-spacing: .4em; }
+    .button { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 46px; padding: 12px 19px; color: #fff7f0; background: linear-gradient(135deg, #793849, #552739); border: 1px solid #a25b6c; border-radius: 10px; cursor: pointer; font-weight: 600; transition: transform .18s, box-shadow .18s, filter .18s; }
+    .button:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 9px 25px rgba(108,42,65,.35); filter: brightness(1.12); }
+    .button:disabled { cursor: default; opacity: .55; }
+    .button.secondary { color: var(--ink); background: rgba(255,255,255,.035); border-color: var(--line); }
+    .button.gold { color: #211721; background: linear-gradient(135deg, #e3c98e, #b89557); border-color: #e2ca8c; }
+    .button-row { position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 29px; }
+    .status { min-height: 23px; margin: 12px 0 0; color: #e78d9e; font-size: 13px; }
+    .small-note { margin: 14px auto 0; color: #93848f; font-size: 12px; line-height: 1.6; }
+    .letter { position: relative; z-index: 1; max-width: 690px; margin: 27px auto 0; padding: clamp(22px, 4vw, 37px); color: #e8dccd; background: linear-gradient(140deg, rgba(78, 48, 53, .23), rgba(22,17,25,.25)); border: 1px solid rgba(214,183,121,.2); border-radius: 12px; font: 18px/1.9 var(--serif); }
+    .letter p { margin: 0 0 17px; }
+    .letter p:last-child { margin-bottom: 0; }
+    .signature { color: var(--gold); font-style: italic; }
+    .cake-stage { position: relative; z-index: 1; display: grid; min-height: 270px; place-items: end center; margin: 12px auto 2px; }
+    .cake { position: relative; width: min(290px, 78vw); height: 150px; margin-bottom: 22px; }
+    .cake-top { position: absolute; z-index: 2; top: 22px; left: 4%; width: 92%; height: 42px; background: radial-gradient(ellipse at 50% 0%, #f0bfbb 0%, #b76370 68%, #762f48 100%); border: 1px solid #dd9c99; border-radius: 50%; box-shadow: inset 0 8px 14px rgba(255,220,200,.15); }
+    .cake-top::after { position: absolute; inset: 8px 9%; border: 1px dashed rgba(255,231,191,.67); border-radius: 50%; content: ""; }
+    .cake-body { position: absolute; top: 42px; left: 7%; width: 86%; height: 82px; background: repeating-linear-gradient(to bottom, #713448 0 15px, #e3b39a 15px 24px); border: 1px solid #9a5463; border-radius: 0 0 23px 23px; box-shadow: 0 13px 24px rgba(0,0,0,.38); }
+    .cake-body::after { position: absolute; left: 7%; right: 7%; bottom: -11px; height: 22px; content: ""; background: #4a2639; border: 1px solid #9a5463; border-radius: 50%; }
+    .candle { position: absolute; z-index: 3; top: -13px; left: calc(50% - 6px); width: 12px; height: 43px; background: repeating-linear-gradient(135deg, #e6d8c8 0 6px, #a84d65 6px 12px); border-radius: 4px 4px 2px 2px; }
+    .flame { position: absolute; top: -27px; left: 1px; width: 11px; height: 20px; background: radial-gradient(ellipse at 45% 70%, #fff6bd 0 18%, #efb84b 47%, #d76451 75%); border-radius: 60% 40% 55% 45%; transform: rotate(7deg); box-shadow: 0 0 17px 7px rgba(240,174,74,.33); animation: flicker .8s ease-in-out infinite alternate; transition: opacity .35s, transform .35s; }
+    @keyframes flicker { to { transform: rotate(-9deg) scale(.88); } }
+    .cake.blown .flame { opacity: 0; transform: translateY(-25px) scale(.25); }
+    .smoke { position: absolute; top: -35px; left: 5px; color: #b9aab8; opacity: 0; font-size: 19px; transition: .4s; }
+    .cake.blown .smoke { opacity: .7; transform: translateY(-10px); }
+    .album-toolbar { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; margin: 25px 0 17px; }
+    .album-toolbar p { margin: 0; color: var(--muted); font: 15px/1.6 var(--serif); }
+    .template-picker { display: flex; flex-wrap: wrap; gap: 7px; }
+    .template-button { padding: 8px 11px; color: #cbbcc1; background: #17121a; border: 1px solid #493746; border-radius: 8px; cursor: pointer; font-size: 12px; }
+    .template-button[aria-pressed="true"] { color: var(--gold); background: #34232e; border-color: #a55a6d; }
+    .photo-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; min-height: 125px; }
+    .photo-card { position: relative; min-width: 0; padding: 8px; overflow: hidden; background: linear-gradient(155deg, #372735, #1a151d 70%); border: 1px solid rgba(214,183,121,.27); border-radius: 5px; box-shadow: 0 12px 22px rgba(0,0,0,.24); }
+    .photo-card img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: radial-gradient(circle, #392b39, #16121a); cursor: zoom-in; }
+    .photo-card figcaption { padding: 9px 3px 4px; color: #d9c8c4; font: italic 14px var(--serif); }
+    .photo-grid[data-layout="film"] { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .photo-grid[data-layout="film"] .photo-card:nth-child(odd) { transform: rotate(-1.4deg); }
+    .photo-grid[data-layout="film"] .photo-card:nth-child(even) { transform: rotate(1.2deg); }
+    .photo-grid[data-layout="film"] .photo-card img { aspect-ratio: 3 / 4; }
+    .photo-grid[data-layout="scrapbook"] { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; }
+    .photo-grid[data-layout="scrapbook"] .photo-card:nth-child(3n+1) { transform: rotate(-2deg); }
+    .photo-grid[data-layout="scrapbook"] .photo-card:nth-child(3n+2) { transform: translateY(9px) rotate(1.5deg); }
+    .photo-grid[data-layout="moonlight"] { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 17px; }
+    .photo-grid[data-layout="moonlight"] .photo-card { padding: 10px; border-radius: 13px; }
+    .photo-grid[data-layout="moonlight"] .photo-card img { aspect-ratio: 16 / 10; border-radius: 7px; }
+    .empty-album { grid-column: 1 / -1; padding: 28px; color: #bcaeb5; background: rgba(9,7,12,.28); border: 1px dashed #6a4c61; border-radius: 12px; text-align: center; font: 16px/1.7 var(--serif); }
+    .game-meta { position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 17px 0 18px; }
+    .stat { min-width: 110px; padding: 10px 15px; background: rgba(8,6,10,.38); border: 1px solid var(--line); border-radius: 10px; color: var(--muted); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+    .stat strong { display: block; margin-top: 4px; color: var(--gold); font: 24px var(--serif); letter-spacing: 0; }
+    .game-board { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(4px, 1.3vw, 9px); width: min(100%, 405px); margin: 0 auto; padding: 10px; background: linear-gradient(145deg, #120e15, #211720); border: 1px solid #624353; border-radius: 14px; box-shadow: inset 0 0 32px rgba(0,0,0,.45); touch-action: manipulation; }
+    .gem { display: grid; aspect-ratio: 1; place-items: center; padding: 0; background: linear-gradient(145deg, rgba(94,64,86,.8), rgba(38,28,42,.95)); border: 1px solid rgba(221,183,135,.36); border-radius: 9px; color: var(--gem-color, #e8c8a2); cursor: pointer; font: clamp(1rem, 5vw, 1.8rem) var(--serif); text-shadow: 0 0 12px currentColor; transition: transform .15s, background .15s, opacity .2s; }
+    .gem:hover { transform: scale(1.05); background: #493148; }
+    .gem.selected { transform: scale(.9); background: #765066; box-shadow: 0 0 0 2px var(--gold), 0 0 17px rgba(220,177,116,.34); }
+    .gem.clearing { opacity: 0; transform: scale(.1) rotate(30deg); }
+    .gem:disabled { cursor: default; }
+    .game-hint { position: relative; z-index: 1; max-width: 520px; min-height: 43px; margin: 13px auto 0; color: var(--muted); font: 15px/1.6 var(--serif); text-align: center; }
+    .finale-icon { display: inline-grid; width: 94px; height: 94px; place-items: center; margin: 4px auto 21px; color: var(--gold); background: radial-gradient(circle, rgba(191,92,110,.25), transparent 70%); border: 1px solid rgba(214,183,121,.32); border-radius: 50%; font-size: 44px; }
+    .finale-copy { max-width: 620px; margin: 0 auto; color: #d8cbd0; font: 18px/1.8 var(--serif); }
+    .confetti-layer { position: fixed; z-index: 5; inset: 0; overflow: hidden; pointer-events: none; }
+    .confetti { position: absolute; top: -20px; width: 8px; height: 13px; background: var(--c); opacity: .9; animation: fall var(--dur) linear forwards; }
+    @keyframes fall { to { transform: translate3d(var(--dx), 110vh, 0) rotate(900deg); opacity: .12; } }
+    dialog { width: min(92vw, 850px); max-height: 90vh; padding: 12px; color: var(--ink); background: #17121a; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 30px 100px #000; }
+    dialog::backdrop { background: rgba(0,0,0,.82); backdrop-filter: blur(5px); }
+    dialog img { display: block; max-width: 100%; max-height: 76vh; margin: auto; object-fit: contain; }
+    dialog button { display: block; margin: 4px 0 7px auto; padding: 6px 10px; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 7px; cursor: pointer; }
+    footer { position: relative; z-index: 1; padding: 22px 8px 0; color: #766a76; font-size: 11px; text-align: center; letter-spacing: .08em; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 20px, 1000px); padding-top: 14px; }
+      .topbar { margin-bottom: 22px; }
+      .brand { font-size: 11px; letter-spacing: .1em; }
+      .music-control { padding: 8px 10px; font-size: 12px; }
+      .progress { gap: 4px; font-size: 0; }
+      .progress-item { gap: 4px; }
+      .progress-dot { width: 24px; height: 24px; font-size: 10px; }
+      .progress-line { width: 15px; }
+      .panel { padding: 28px 18px; border-radius: 15px; }
+      .pin-form { flex-direction: column; align-items: center; }
+      .pin-input { width: 100%; }
+      .button-row .button { flex: 1 1 auto; }
+      .letter { font-size: 16px; }
+      .album-toolbar { align-items: flex-start; flex-direction: column; }
+      .template-picker { width: 100%; }
+      .template-button { flex: 1 1 auto; }
+      .photo-grid, .photo-grid[data-layout="scrapbook"] { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+      .photo-grid[data-layout="film"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .photo-grid[data-layout="moonlight"] { grid-template-columns: 1fr; }
+      .photo-card { padding: 6px; }
+      .photo-card figcaption { font-size: 12px; }
+      .gem { border-radius: 6px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sky" aria-hidden="true"><span class="bat">⌁</span><span class="bat">⌁</span><span class="bat">⌁</span><span class="bat">⌁</span></div>
+  <div class="confetti-layer" id="confetti" aria-hidden="true"></div>
+  <main class="wrap">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">☾</span><span>A birthday under the moon</span></div>
+      <button class="music-control" id="musicToggle" type="button" aria-pressed="false" title="Play or pause music"><span class="music-note" aria-hidden="true">♫</span><span id="musicLabel">Play the music</span></button>
+      <audio id="birthdayMusic" src="music1.mp3" loop preload="none"></audio>
+    </header>
+
+    <nav class="progress" id="progress" aria-label="Birthday story progress" hidden></nav>
+
+    <section class="screen active" id="screen-pin" aria-labelledby="pin-title">
+      <div class="panel center">
+        <p class="eyebrow">A little secret awaits</p>
+        <h1 id="pin-title">For Jhanna</h1>
+        <p class="subtitle">A moonlit birthday surprise, sealed with a small secret. Enter the four-number key to step inside.</p>
+        <div class="ornament" aria-hidden="true">✧</div>
+        <form class="pin-form" id="pinForm">
+          <label class="sr-only" for="pinInput">Four-digit birthday key</label>
+          <input class="pin-input" id="pinInput" name="pin" inputmode="numeric" autocomplete="off" maxlength="4" pattern="[0-9]{4}" placeholder="••••" aria-describedby="pinStatus" required>
+          <button class="button gold" type="submit">Unlock the letter <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="status" id="pinStatus" role="status" aria-live="polite"></p>
+        <p class="small-note">For Jhanna's 21st birthday · Made with love and a little midnight magic</p>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-letter" aria-labelledby="letter-title" tabindex="-1">
+      <div class="panel">
+        <div class="center">
+          <p class="eyebrow">Chapter I · A letter by candlelight</p>
+          <h2 id="letter-title">Dear Jhanna,</h2>
+          <p class="subtitle">On the night you turn twenty-one</p>
+        </div>
+        <article class="letter">
+          <p>Twenty-one years of becoming, and somehow you keep finding new ways to make the world feel warmer. Today is yours: a little constellation of all the laughter, courage, and kindness you have given to the people lucky enough to know you.</p>
+          <p>I hope this next year brings you quiet mornings when you need them, loud laughter when you least expect it, and the courage to follow every strange and beautiful dream that calls your name. May you always remember how loved you are, exactly as you are.</p>
+          <p>Here is to the chapters you have already written, and to every wonderful page still waiting for you. Make a wish worthy of the moon.</p>
+          <p class="signature">Happy 21st birthday, Jhanna. You deserve a little magic today and always.</p>
+        </article>
+        <div class="button-row"><button class="button" type="button" data-next="cake">Continue to your wish <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-cake" aria-labelledby="cake-title" tabindex="-1">
+      <div class="panel center">
+        <p class="eyebrow">Chapter II · Make a wish</p>
+        <h2 id="cake-title">One candle. Twenty-one wishes.</h2>
+        <p class="subtitle">Take a breath, think of something wonderful, and blow out your candle.</p>
+        <div class="cake-stage" aria-label="A small birthday cake with a lit candle">
+          <div class="cake" id="cakeArt" role="img" aria-label="A candle is glowing on a little birthday cake">
+            <div class="cake-top"></div><div class="cake-body"></div>
+            <div class="candle"><span class="flame" id="flame"></span><span class="smoke" aria-hidden="true">〰</span></div>
+          </div>
+        </div>
+        <p class="status" id="wishStatus" role="status" aria-live="polite">Your wish is safe with the stars.</p>
+        <div class="button-row">
+          <button class="button gold" type="button" id="blowButton">✧ &nbsp; Blow out the candle</button>
+          <button class="button" type="button" id="cakeContinue" hidden>See your birthday album <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-album" aria-labelledby="album-title" tabindex="-1">
+      <div class="panel">
+        <div class="center">
+          <p class="eyebrow">Chapter III · Little memories, forever</p>
+          <h2 id="album-title">A gallery for Jhanna</h2>
+          <p class="subtitle">Choose a frame for these favorite moments. Add your own numbered photos to make this little album yours.</p>
+        </div>
+        <div class="album-toolbar">
+          <p id="photoCount" aria-live="polite">Looking for your photographs…</p>
+          <div class="template-picker" role="group" aria-label="Choose an album template">
+            <button class="template-button" type="button" data-layout="gothic" aria-pressed="true">Nocturne</button>
+            <button class="template-button" type="button" data-layout="film" aria-pressed="false">Film strip</button>
+            <button class="template-button" type="button" data-layout="scrapbook" aria-pressed="false">Scrapbook</button>
+            <button class="template-button" type="button" data-layout="moonlight" aria-pressed="false">Moonlight</button>
+          </div>
+        </div>
+        <div class="photo-grid" id="photoGrid" data-layout="gothic" aria-label="Birthday photo album"></div>
+        <div class="button-row"><button class="button" type="button" data-next="game">Enter the midnight arcade <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-game" aria-labelledby="game-title" tabindex="-1">
+      <div class="panel center">
+        <p class="eyebrow">Chapter IV · Midnight arcade</p>
+        <h2 id="game-title">Midnight Match</h2>
+        <p class="subtitle">Swap neighboring charms and line up three or more to gather moonlight. How high can your score climb?</p>
+        <div class="game-meta" aria-label="Game stats">
+          <div class="stat">Moonlight<strong id="score">0</strong></div>
+          <div class="stat">Moves left<strong id="moves">20</strong></div>
+          <div class="stat">Wish goal<strong>300</strong></div>
+        </div>
+        <div class="game-board" id="gameBoard" role="grid" aria-label="Midnight Match game board"></div>
+        <p class="game-hint" id="gameHint" role="status" aria-live="polite">Select a charm, then a neighboring charm to swap them. Match three in a row.</p>
+        <div class="button-row">
+          <button class="button secondary" type="button" id="newGame">Start a new game</button>
+          <button class="button gold" type="button" data-next="finale">Continue to your final surprise <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-finale" aria-labelledby="finale-title" tabindex="-1">
+      <div class="panel center">
+        <div class="finale-icon" aria-hidden="true">☾</div>
+        <p class="eyebrow">The final chapter · And a thousand more to come</p>
+        <h2 id="finale-title">The night is yours, Jhanna.</h2>
+        <div class="ornament" aria-hidden="true">✧ ✧ ✧</div>
+        <p class="finale-copy">May your twenty-first year be full of love that feels like home, adventures that make your heart race, and small beautiful things that find you at just the right time. The stars are lucky to have you.</p>
+        <p class="signature" style="position:relative;z-index:1;margin:20px 0 0;font:italic 20px var(--serif)">Happy birthday, Jhanna. Here's to you. ✦</p>
+        <div class="button-row"><button class="button gold" type="button" id="resetFlow">↺ &nbsp; Relive the birthday story</button></div>
+      </div>
+    </section>
+
+    <footer>Made for Jhanna's 21st birthday <span aria-hidden="true">·</span> Under a velvet moon</footer>
+  </main>
+
+  <dialog id="lightbox" aria-label="Photograph preview"><button id="closeLightbox" type="button" aria-label="Close photo preview">Close ✕</button><img id="lightboxImage" alt="Enlarged birthday memory"></dialog>
+
+  <script>
+    (() => {
+      "use strict";
+
+      // The SHA-256 digest avoids putting the PIN itself in this public static file.
+      // A client-side PIN is only a playful gate; it cannot protect private content.
+      const PIN_DIGEST = "7f861bcee185de001377d79e08af62e94b1e7718e2470e08520c917f8d953602";
+      const steps = ["pin", "letter", "cake", "album", "game", "finale"];
+      const screens = Object.fromEntries(steps.map(step => [step, document.getElementById(`screen-${step}`)]));
+      const progress = document.getElementById("progress");
+      const music = document.getElementById("birthdayMusic");
+      const musicToggle = document.getElementById("musicToggle");
+      const musicLabel = document.getElementById("musicLabel");
+      let activeStep = "pin";
+      let unlocked = false;
+
+      function renderProgress(step) {
+        const current = steps.indexOf(step);
+        progress.innerHTML = steps.slice(1).map((name, index) => {
+          const number = index + 1;
+          const state = number < current ? "done" : number === current ? "current" : "";
+          const label = name === "finale" ? "Finale" : name;
+          return `${index ? '<span class="progress-line" aria-hidden="true"></span>' : ""}<span class="progress-item ${state}" ${number === current ? 'aria-current="step"' : ""}><span class="progress-dot">${number < current ? "✓" : number}</span><span>${label}</span></span>`;
+        }).join("");
+      }
+
+      function showStep(step) {
+        if (step !== "pin" && !unlocked) return;
+        activeStep = step;
+        for (const [name, screen] of Object.entries(screens)) screen.classList.toggle("active", name === step);
+        progress.hidden = step === "pin";
+        if (step !== "pin") renderProgress(step);
+        screens[step].focus({ preventScroll: true });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (step === "album") loadAlbum();
+        if (step === "game" && gameBoard.childElementCount === 0) resetGame();
+        if (step === "finale") launchConfetti();
+      }
+
+      async function digest(text) {
+        const bytes = new TextEncoder().encode(text);
+        const hash = await crypto.subtle.digest("SHA-256", bytes);
+        return Array.from(new Uint8Array(hash), byte => byte.toString(16).padStart(2, "0")).join("");
+      }
+
+      document.getElementById("pinForm").addEventListener("submit", async event => {
+        event.preventDefault();
+        const input = document.getElementById("pinInput");
+        const status = document.getElementById("pinStatus");
+        const submit = event.currentTarget.querySelector("button[type=submit]");
+        status.textContent = "";
+        if (!/^\d{4}$/.test(input.value)) {
+          status.textContent = "Please enter a four-digit key.";
+          input.focus();
+          return;
+        }
+        submit.disabled = true;
+        try {
+          if (await digest(input.value) === PIN_DIGEST) {
+            unlocked = true;
+            showStep("letter");
+            music.play().then(() => updateMusic(true)).catch(() => updateMusic(false));
+          } else {
+            status.textContent = "That key did not open the letter. Try again.";
+            input.value = "";
+            input.focus();
+          }
+        } catch {
+          status.textContent = "This browser could not check the key. Please open the page over HTTPS.";
+        } finally {
+          submit.disabled = false;
+        }
+      });
+
+      document.querySelectorAll("[data-next]").forEach(button => button.addEventListener("click", () => showStep(button.dataset.next)));
+      const cakeArt = document.getElementById("cakeArt");
+      const blowButton = document.getElementById("blowButton");
+      blowButton.addEventListener("click", () => {
+        cakeArt.classList.add("blown");
+        cakeArt.setAttribute("aria-label", "The candle has been blown out");
+        document.getElementById("wishStatus").textContent = "Wish sent. The stars are listening. ✦";
+        blowButton.hidden = true;
+        document.getElementById("cakeContinue").hidden = false;
+      });
+      document.getElementById("cakeContinue").addEventListener("click", () => showStep("album"));
+
+      function updateMusic(playing) {
+        musicToggle.setAttribute("aria-pressed", String(playing));
+        musicLabel.textContent = playing ? "Pause the music" : "Play the music";
+      }
+      musicToggle.addEventListener("click", async () => {
+        if (music.paused) {
+          try { await music.play(); updateMusic(true); }
+          catch { musicLabel.textContent = "Add music1.mp3"; }
+        } else {
+          music.pause();
+          updateMusic(false);
+        }
+      });
+      music.addEventListener("error", () => { if (music.paused) musicLabel.textContent = "Add music1.mp3"; });
+      music.addEventListener("ended", () => updateMusic(false));
+
+      const photoGrid = document.getElementById("photoGrid");
+      let albumLoaded = false;
+      async function loadAlbum() {
+        if (albumLoaded) return;
+        albumLoaded = true;
+        const photos = [];
+        for (let number = 1; number <= 24; number++) {
+          const src = `${number}.png`;
+          const exists = await new Promise(resolve => {
+            const image = new Image();
+            image.onload = () => resolve(true);
+            image.onerror = () => resolve(false);
+            image.src = src;
+          });
+          if (!exists) break;
+          photos.push({ number, src });
+        }
+        document.getElementById("photoCount").textContent = photos.length
+          ? `${photos.length} ${photos.length === 1 ? "memory" : "memories"} beneath the moon`
+          : "Your gallery is waiting for its first memory.";
+        if (!photos.length) {
+          photoGrid.innerHTML = '<div class="empty-album">Place your photos beside this page as <strong>1.png</strong>, <strong>2.png</strong>, and so on. Your memories will appear here in order.</div>';
+          return;
+        }
+        photoGrid.innerHTML = photos.map(({ number, src }) => `<figure class="photo-card"><img src="${src}" alt="Birthday memory ${number}" loading="lazy" data-photo="${number}"><figcaption>Memory ${String(number).padStart(2, "0")}</figcaption></figure>`).join("");
+      }
+      document.querySelectorAll(".template-button").forEach(button => button.addEventListener("click", () => {
+        document.querySelectorAll(".template-button").forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+        photoGrid.dataset.layout = button.dataset.layout;
+      }));
+      const lightbox = document.getElementById("lightbox");
+      photoGrid.addEventListener("click", event => {
+        const image = event.target.closest("img[data-photo]");
+        if (!image) return;
+        document.getElementById("lightboxImage").src = image.src;
+        document.getElementById("lightboxImage").alt = image.alt;
+        lightbox.showModal();
+      });
+      document.getElementById("closeLightbox").addEventListener("click", () => lightbox.close());
+
+      const gameBoard = document.getElementById("gameBoard");
+      const gameHint = document.getElementById("gameHint");
+      const scoreOutput = document.getElementById("score");
+      const movesOutput = document.getElementById("moves");
+      const symbols = ["☾", "✦", "❖", "♟", "❀", "⚗"];
+      const colors = ["#c8b5ed", "#f0cd83", "#e2a1b0", "#b9c0d9", "#e8a8bc", "#a9c8b4"];
+      const boardSize = 7;
+      let board = [];
+      let score = 0;
+      let moves = 20;
+      let selected = -1;
+      let busy = false;
+      let gameOver = false;
+      const randomType = () => Math.floor(Math.random() * symbols.length);
+
+      function matchesFor(state) {
+        const found = new Set();
+        for (let row = 0; row < boardSize; row++) {
+          let start = 0;
+          while (start < boardSize) {
+            const value = state[row * boardSize + start];
+            let end = start + 1;
+            while (end < boardSize && state[row * boardSize + end] === value) end++;
+            if (value >= 0 && end - start >= 3) for (let col = start; col < end; col++) found.add(row * boardSize + col);
+            start = end;
+          }
+        }
+        for (let col = 0; col < boardSize; col++) {
+          let start = 0;
+          while (start < boardSize) {
+            const value = state[start * boardSize + col];
+            let end = start + 1;
+            while (end < boardSize && state[end * boardSize + col] === value) end++;
+            if (value >= 0 && end - start >= 3) for (let row = start; row < end; row++) found.add(row * boardSize + col);
+            start = end;
+          }
+        }
+        return found;
+      }
+
+      function makeFreshBoard() {
+        const result = [];
+        for (let row = 0; row < boardSize; row++) {
+          for (let col = 0; col < boardSize; col++) {
+            let value;
+            do { value = randomType(); }
+            while ((col >= 2 && result[row * boardSize + col - 1] === value && result[row * boardSize + col - 2] === value) ||
+                   (row >= 2 && result[(row - 1) * boardSize + col] === value && result[(row - 2) * boardSize + col] === value));
+            result.push(value);
+          }
+        }
+        return result;
+      }
+
+      function drawBoard() {
+        gameBoard.innerHTML = board.map((value, index) => `<button type="button" role="gridcell" class="gem${selected === index ? " selected" : ""}" style="--gem-color:${colors[value]}" aria-label="${symbols[value]} charm, row ${Math.floor(index / boardSize) + 1}, column ${index % boardSize + 1}" aria-pressed="${selected === index}" data-index="${index}" ${busy || gameOver ? "disabled" : ""}>${symbols[value]}</button>`).join("");
+        scoreOutput.textContent = String(score);
+        movesOutput.textContent = String(moves);
+      }
+
+      function finishTurn() {
+        if (score >= 300) {
+          gameOver = true;
+          gameHint.textContent = "Wish granted! You gathered enough moonlight. The birthday magic is yours.";
+        } else if (moves <= 0) {
+          gameOver = true;
+          gameHint.textContent = `The night is over with ${score} moonlight. A lovely try, birthday star.`;
+        } else if (score >= 150) {
+          gameHint.textContent = "Beautifully done. Keep matching charms to reach the wish goal.";
+        } else {
+          gameHint.textContent = "Select a charm, then a neighboring charm to swap them. Match three in a row.";
+        }
+        busy = false;
+        selected = -1;
+        drawBoard();
+      }
+
+      async function clearMatches() {
+        let matches = matchesFor(board);
+        while (matches.size) {
+          for (const index of matches) board[index] = -1;
+          drawBoard();
+          await new Promise(resolve => setTimeout(resolve, 210));
+          for (let col = 0; col < boardSize; col++) {
+            const survivors = [];
+            for (let row = boardSize - 1; row >= 0; row--) {
+              const value = board[row * boardSize + col];
+              if (value >= 0) survivors.push(value);
+            }
+            for (let row = boardSize - 1; row >= 0; row--) {
+              board[row * boardSize + col] = survivors[boardSize - 1 - row] ?? randomType();
+            }
+          }
+          score += matches.size * 10;
+          matches = matchesFor(board);
+        }
+      }
+
+      function isAdjacent(a, b) { return Math.abs(Math.floor(a / boardSize) - Math.floor(b / boardSize)) + Math.abs(a % boardSize - b % boardSize) === 1; }
+
+      async function chooseTile(index) {
+        if (busy || gameOver) return;
+        if (selected < 0) { selected = index; drawBoard(); return; }
+        if (selected === index) { selected = -1; drawBoard(); return; }
+        if (!isAdjacent(selected, index)) { selected = index; drawBoard(); return; }
+        const first = selected;
+        const second = index;
+        [board[first], board[second]] = [board[second], board[first]];
+        selected = -1;
+        if (!matchesFor(board).size) {
+          [board[first], board[second]] = [board[second], board[first]];
+          gameHint.textContent = "Those charms do not form a match. Try another neighboring pair.";
+          drawBoard();
+          return;
+        }
+        busy = true;
+        moves--;
+        drawBoard();
+        await clearMatches();
+        finishTurn();
+      }
+
+      gameBoard.addEventListener("click", event => {
+        const tile = event.target.closest("button[data-index]");
+        if (tile) chooseTile(Number(tile.dataset.index));
+      });
+      function resetGame() {
+        board = makeFreshBoard();
+        score = 0;
+        moves = 20;
+        selected = -1;
+        busy = false;
+        gameOver = false;
+        gameHint.textContent = "Select a charm, then a neighboring charm to swap them. Match three in a row.";
+        drawBoard();
+      }
+      document.getElementById("newGame").addEventListener("click", resetGame);
+
+      function launchConfetti() {
+        const layer = document.getElementById("confetti");
+        layer.replaceChildren();
+        const palette = ["#d6b779", "#b95268", "#e7d8c2", "#7b577f", "#c7817d"];
+        for (let index = 0; index < 90; index++) {
+          const piece = document.createElement("i");
+          piece.className = "confetti";
+          piece.style.left = `${Math.random() * 100}%`;
+          piece.style.setProperty("--c", palette[index % palette.length]);
+          piece.style.setProperty("--dur", `${3 + Math.random() * 4}s`);
+          piece.style.setProperty("--dx", `${(Math.random() - .5) * 240}px`);
+          piece.style.animationDelay = `${Math.random() * 1.5}s`;
+          layer.append(piece);
+        }
+        window.setTimeout(() => layer.replaceChildren(), 8500);
+      }
+
+      document.getElementById("resetFlow").addEventListener("click", () => {
+        unlocked = false;
+        albumLoaded = false;
+        music.pause();
+        music.currentTime = 0;
+        updateMusic(false);
+        document.getElementById("pinInput").value = "";
+        document.getElementById("pinStatus").textContent = "";
+        cakeArt.classList.remove("blown");
+        cakeArt.setAttribute("aria-label", "A candle is glowing on a little birthday cake");
+        document.getElementById("wishStatus").textContent = "Your wish is safe with the stars.";
+        blowButton.hidden = false;
+        document.getElementById("cakeContinue").hidden = true;
+        photoGrid.innerHTML = "";
+        photoGrid.dataset.layout = "gothic";
+        document.querySelectorAll(".template-button").forEach((button, index) => button.setAttribute("aria-pressed", String(index === 0)));
+        resetGame();
+        document.getElementById("confetti").replaceChildren();
+        showStep("pin");
+        document.getElementById("pinInput").focus({ preventScroll: true });
+      });
+
+      // Keep the board ready while hidden so its first visit feels immediate.
+      resetGame();
+    })();
+  </script>
+</body>
+</html>
